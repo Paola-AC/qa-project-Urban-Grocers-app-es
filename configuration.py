@@ -1,4 +1,4 @@
-URL_SERVICE = "https://cnt-b92d8615-10fe-4eb6-a0e6-7db9b93a4d86.containerhub.tripleten-services.com"
+URL_SERVICE = "https://cnt-373ddc8a-fb52-4734-b3ea-314f3c029582.containerhub.tripleten-services.com"
 # Inserta tu dirección de URL sin la barra diagonal al final
 
 DOC_PATH = "/docs/"

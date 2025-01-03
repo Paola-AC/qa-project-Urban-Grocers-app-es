@@ -24,13 +24,18 @@ def positive_assert(kit_body):
     authToken_kit = get_new_user_token()
     user_response = sender_stand_request.post_new_client_kit(user_body, authToken_kit)
 
-    # Comprueba si el código de estado es 201
+    # Comprueba si el código de estado es 201 (Exitoso)
     assert user_response.status_code == 201
+
     # Comprueba que el campo authToken está en la respuesta y contiene un valor
     assert user_response.json() != ""
 
     # El resultado de la solicitud de recepción de datos de la tabla "user_model" se guarda en la variable "users_table_response"
     users_table_response = sender_stand_request.get_users_table()
+
+    # Comparar el campo 'name' de la respuesta con el 'name' enviado en kit_body
+    response_json = user_response.json()
+    assert response_json["name"] == kit_body
 
 
     # Prueba 1. El número permitido de caracteres (1): kit_body = { "name": "a"}
@@ -43,11 +48,11 @@ def test_create_kit_511_letter_in_name_get_success_response():
     positive_assert("Abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc//"
                     "dabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdab//"
                     "cdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcda//"
-                    "bcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcdabcda//"
-                    "bcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcda//"
-                    "bcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdab//"
-                    "cdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc//"
-                    "dabcdabcdabcdabcdabcdabcdabcdabcdabC")
+                    "bcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcdabcd//"
+                    "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc//"
+                    "dabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdab//"
+                    "cdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcda//"
+                    "bcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabC")
 
 # FUNCION DE PRUEBA NEGATIVA
 def negative_assert_code_400 (kit_body):
@@ -71,7 +76,7 @@ def test_create_kit_No_letter_in_name_get_success_response():
     negative_assert_code_400("")
 
 
-    # Prueba 4. 	El número de caracteres es mayor que la cantidad //
+    # Prueba 4.     El número de caracteres es mayor que la cantidad //
     # permitida (512): kit_body = { "name":"El valor de prueba para esta comprobación será inferior a” }
 def test_create_kit_512_letter_in_name_get_success_response():
     negative_assert_code_400("Abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc//"
@@ -102,6 +107,7 @@ def test_create_kit_numbers_letter_in_name_get_success_response():
 def test_create_kit_caracter_letter_in_name_get_success_response():
     negative_assert_code_400({ })
 
- # Prueba 9. Se ha pasado un tipo de parámetro diferente (número): kit_body = { "name": 123 }
+    # Prueba 9. Se ha pasado un tipo de parámetro diferente (número): kit_body = { "name": 123 }
 def test_create_kit_fuction_letter_in_name_get_success_response():
     negative_assert_code_400({ "name": 123 })
+

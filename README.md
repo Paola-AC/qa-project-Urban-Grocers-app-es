@@ -1,10 +1,22 @@
+
+# Paola Alfonso_Cohort 19
+
 # Proyecto Urban Grocers 
 
-# Proyecto de Pruebas de API - Creación de Kits para Usuarios
+## Proyecto de Pruebas de API - Creación de Kits para Usuarios
 
-Este proyecto tiene como objetivo realizar pruebas sobre la creación //
-de kits para un usuario en una API, en especial el campo "name".
- 
+Objetivo: El objetivo de este proyecto, es automizar las pruebas 
+del proceso de creacion de un kit de productos en la aplicacion 
+Urban Grocers. 
+
+El proceso se enfocara especificamente en validar el campo "name"
+en la solicitud de creacion de un kit, le cual consiste en crear
+un usuario en la plataforma, obtener el token de autenticacion 
+(authTojen), y utilizar este toekn para crear el kit asociado al
+usuario. Posteriormente, se llvara a cabo la validacion del campo
+"name" siguiendo la lista de comprobacion previamente definida.
+Una vez completadas las pruebas, se cargara el codigo automatizado 
+en Github y se enviara al repositorio.
 
 ## Archivos del Proyecto
 
